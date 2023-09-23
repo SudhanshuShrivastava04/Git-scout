@@ -2,10 +2,12 @@
 import React, { useState } from "react";
 import { BiSearch } from "react-icons/bi";
 import Userdetails from "./Userdetails";
+import {GrCircleAlert} from "react-icons/gr";
 
 function SearchUser() {
   const [username, setUsername] = useState("");
   const [userData, setUserData] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const handleSearch = async () => {
     try {
@@ -18,11 +20,13 @@ function SearchUser() {
       }
     } catch (error) {
       console.error("Error in fetching user Details", error);
+    } finally {
+      setLoading(true);
     }
   };
   return (
     <>
-      <div className="w-full gap-10 flex flex-col items-center justify-between">
+      <div className="w-full gap-10 flex flex-col items-center justify-between h-full">
         <div className="bg-white w-full p-4 rounded-full flex flex-row">
           <input
             type="text"
@@ -32,17 +36,20 @@ function SearchUser() {
             onChange={(e) => setUsername(e.target.value)}
           />
           <button
-            className="text-gray-400 hover:text-gray-500 hover:scale-150 duration-150"
+            className="text-gray-400 hover:text-gray-500 hover:scale-150 duration-150 focus:scale-100"
             onClick={handleSearch}
           >
             <BiSearch />{" "}
           </button>
         </div>
-        <div>
+        <div className="">
           {userData ? (
             <Userdetails user={userData} />
           ) : (
-            <p>No such username found!</p>
+            <div className="flex flex-row p-2 text-lg bg-red-500 rounded-full justify-between items-center gap-4">
+              <GrCircleAlert />
+              <p>No user found !</p>
+            </div>
           )}
         </div>
       </div>

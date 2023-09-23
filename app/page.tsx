@@ -9,9 +9,6 @@ export default function Home() {
         </div>
         <SearchCard />
       </nav>
-      <footer>
-        links
-      </footer>
     </main>
   );
 }
