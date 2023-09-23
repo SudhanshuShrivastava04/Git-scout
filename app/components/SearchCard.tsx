@@ -4,7 +4,7 @@ import SearchUser from "./SearchUser";
 function SearchCard() {
   return (
     <>
-      <div className="bg-white rounded-full w-full p-4">
+      <div className="h-screen w-full p-4">
         <SearchUser />
       </div>
     </>
